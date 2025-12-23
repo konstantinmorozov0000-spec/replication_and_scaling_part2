@@ -128,22 +128,18 @@
 
 ### Блоксхема архитектуры
 
-                    +------------------+
-                    |   Application    |
-                    +---------+--------+
-                              |
-          +-------------------+-------------------+
-          |                   |                   |
-+------------------+  +------------------+  +------------------+
-|   users_db       |  |   catalog_db     |  |   shops_db       |
-|   MASTER         |  |   MASTER         |  |   MASTER         |
-|  (write/read)    |  |  (write/read)    |  |  (write/read)    |
-+--------+---------+  +--------+---------+  +--------+---------+
-         |                     |                     |
-+------------------+  +------------------+  +------------------+
-| users_db_slave   |  | catalog_db_slave |  | shops_db_slave   |
-| READ ONLY        |  | READ ONLY        |  | READ ONLY        |
-+------------------+  +------------------+  +------------------+
+```text
+                    Application
+                          |
+        -------------------------------------
+        |                |                |
+     users_db          catalog_db        shops_db
+      MASTER             MASTER            MASTER
+   (write / read)     (write / read)    (write / read)
+        |                |                |
+   users_db_slave   catalog_db_slave   shops_db_slave
+     READ ONLY         READ ONLY          READ ONLY
+```
 
 
 ---
